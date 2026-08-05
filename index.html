@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>담임강사님 심방 신청 · 강동교회</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pretendard/1.3.9/static/pretendard.min.css">
+<style>
+:root{
+  --ink:#22303e;        /* 본문 잉크 */
+  --deep:#31577a;       /* 딥 블루 — 신뢰/교회 */
+  --deep-dark:#254666;
+  --paper:#f6f4ef;      /* 종이 배경 */
+  --card:#ffffff;
+  --line:#e3ddd2;
+  --accent:#b98a3c;     /* 절제된 금색 포인트 */
+  --muted:#7d8896;
+  --danger:#b4483c;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  font-family:'Pretendard',-apple-system,BlinkMacSystemFont,'Malgun Gothic',sans-serif;
+  background:var(--paper);
+  color:var(--ink);
+  line-height:1.6;
+  padding-bottom:60px;
+}
+.wrap{max-width:560px;margin:0 auto;padding:0 20px}
+
+/* 헤더 */
+header{
+  background:linear-gradient(160deg,#31577a 0%,#223f5a 100%);
+  color:#fff;
+  padding:44px 0 36px;
+  text-align:center;
+  border-bottom:3px solid var(--accent);
+}
+header .eyebrow{
+  font-size:12px;letter-spacing:.35em;color:#c9b98a;
+  text-transform:uppercase;margin-bottom:12px;font-weight:600;
+}
+header h1{font-size:24px;font-weight:700;letter-spacing:-0.01em}
+header p{font-size:14px;color:#d8e2ec;margin-top:10px}
+
+/* 안내 */
+.notice{
+  background:#fdfbf6;border:1px solid var(--line);border-left:4px solid var(--accent);
+  border-radius:10px;padding:16px 18px;margin:24px 0;font-size:13.5px;color:#5a6472;
+}
+.notice strong{color:var(--ink)}
+
+/* 폼 */
+form{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:26px 22px;box-shadow:0 2px 12px rgba(40,60,80,.05)}
+.field{margin-bottom:22px}
+label.top{display:block;font-size:14px;font-weight:700;margin-bottom:8px}
+label.top .req{color:var(--danger);margin-left:3px}
+.hint{font-size:12.5px;color:var(--muted);margin-top:6px}
+input[type=text],input[type=tel],textarea,select{
+  width:100%;border:1.5px solid var(--line);border-radius:9px;
+  padding:12px 14px;font-size:15px;font-family:inherit;background:#fff;color:var(--ink);
+}
+input:focus,textarea:focus,select:focus{outline:none;border-color:var(--deep);box-shadow:0 0 0 3px rgba(49,87,122,.12)}
+textarea{resize:vertical;min-height:96px}
+
+/* 라디오 카드 */
+.radio-grid{display:grid;gap:8px}
+.radio-card{position:relative}
+.radio-card input{position:absolute;opacity:0}
+.radio-card span{
+  display:block;border:1.5px solid var(--line);border-radius:9px;
+  padding:11px 14px;font-size:14.5px;cursor:pointer;background:#fff;transition:.15s;
+}
+.radio-card small{display:block;font-size:12px;color:var(--muted);margin-top:2px}
+.radio-card input:checked + span{
+  border-color:var(--deep);background:#eef3f8;font-weight:700;color:var(--deep);
+}
+.radio-card input:focus-visible + span{box-shadow:0 0 0 3px rgba(49,87,122,.25)}
+
+.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+
+/* 제출 */
+button.submit{
+  width:100%;background:var(--deep);color:#fff;border:none;border-radius:10px;
+  padding:15px;font-size:16px;font-weight:700;cursor:pointer;font-family:inherit;
+  transition:.15s;margin-top:6px;
+}
+button.submit:hover{background:#274666}
+button.submit:disabled{background:#9db0c2;cursor:not-allowed}
+
+/* 완료 화면 */
+.done{display:none;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:44px 24px;text-align:center;margin-top:24px}
+.done .mark{width:56px;height:56px;border-radius:50%;background:#eef3f8;border:2px solid var(--deep);color:var(--deep);font-size:26px;line-height:52px;margin:0 auto 16px}
+.done h2{font-size:20px;margin-bottom:10px}
+.done p{font-size:14px;color:var(--muted)}
+
+.err{display:none;background:#fbeeec;border:1px solid #e6c3be;color:var(--danger);border-radius:9px;padding:12px 14px;font-size:13.5px;margin-bottom:16px}
+footer{text-align:center;font-size:12px;color:var(--muted);margin-top:28px}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="eyebrow">GANGDONG CHURCH</div>
+    <h1>담임강사님 심방 신청</h1>
+    <p>구역장 이상 사명자 대상 · 내무부 주관</p>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div class="notice">
+    신청해 주신 내용은 <strong>내무부에서 취합</strong>하여 우선순위에 따라 담임강사님 심방 일정을 조율해 드립니다.
+    건강상 심방이 필요하신 분은 건강 상태 항목에 간단히 기재해 주세요.
+  </div>
+
+  <form id="applyForm">
+    <div class="err" id="errBox"></div>
+
+    <div class="field">
+      <label class="top">성명 <span class="req">*</span></label>
+      <input type="text" id="name" placeholder="이름을 입력해 주세요" required>
+    </div>
+
+    <div class="field two">
+      <div>
+        <label class="top">연락처 <span class="req">*</span></label>
+        <input type="tel" id="phone" placeholder="010-0000-0000" required>
+      </div>
+      <div>
+        <label class="top">소속 부서 <span class="req">*</span></label>
+        <select id="dept" required>
+          <option value="">선택</option>
+          <optgroup label="네 생물">
+            <option>자문회</option>
+            <option>장년회</option>
+            <option>부녀회</option>
+            <option>청년회</option>
+          </optgroup>
+          <optgroup label="부서">
+            <option>24부서</option>
+            <option>신학부</option>
+          </optgroup>
+        </select>
+      </div>
+    </div>
+
+    <div class="field">
+      <label class="top">세부 소속</label>
+      <input type="text" id="unit" placeholder="예: 3부 2팀 5구역 / 24부서는 부서명 기재">
+      <div class="hint">24부서 소속이신 경우 부서명을, 네 생물 소속이신 경우 부·팀·구역을 적어 주세요.</div>
+    </div>
+
+    <div class="field">
+      <label class="top">직책 <span class="req">*</span></label>
+      <div class="radio-grid" id="roleGroup">
+        <label class="radio-card"><input type="radio" name="role" value="중진"><span>중진</span></label>
+        <label class="radio-card"><input type="radio" name="role" value="교역자"><span>교역자 <small>부서장(회장) 포함</small></span></label>
+        <label class="radio-card"><input type="radio" name="role" value="임지역장"><span>임지역장 <small>부서 총무 포함</small></span></label>
+        <label class="radio-card"><input type="radio" name="role" value="교관"><span>교관</span></label>
+        <label class="radio-card"><input type="radio" name="role" value="팀장"><span>팀장</span></label>
+        <label class="radio-card"><input type="radio" name="role" value="구역장"><span>구역장</span></label>
+      </div>
+    </div>
+
+    <div class="field">
+      <label class="top">건강 상태 <span style="font-weight:400;color:var(--muted)">(지병이 있는 경우만 기재)</span></label>
+      <textarea id="health" style="min-height:72px" placeholder="지속적인 치료나 관리가 필요한 경우에만 간단히 적어 주세요."></textarea>
+      <div class="hint">기재해 주신 내용은 심방 우선순위 결정에 활용되며, 내무부에서만 확인합니다. 해당 사항이 없으면 비워 두세요.</div>
+    </div>
+
+    <div class="field">
+      <label class="top">심방 요청 사유 <span class="req">*</span></label>
+      <textarea id="reason" placeholder="담임강사님 심방을 요청하시는 사유를 적어 주세요" required></textarea>
+    </div>
+
+    <div class="field">
+      <label class="top">희망 시기</label>
+      <input type="text" id="wishDate" placeholder="예: 8월 중 / 가급적 빨리 / 주중 오후">
+    </div>
+
+    <button type="submit" class="submit" id="btnSubmit">심방 신청하기</button>
+  </form>
+
+  <div class="done" id="doneBox">
+    <div class="mark">✓</div>
+    <h2>신청이 접수되었습니다</h2>
+    <p>내무부에서 내용을 확인한 후<br>우선순위에 따라 심방 일정을 안내드리겠습니다.</p>
+  </div>
+
+  <footer>강동교회 내무부 · 담임강사 심방 신청</footer>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+<script>
+/* ============================================================
+   [설정] 기존 강동교회 Firebase 프로젝트 설정값을 붙여넣으세요.
+   Firebase 콘솔 → 프로젝트 설정 → 일반 → 내 앱 → SDK 설정
+   ============================================================ */
+const firebaseConfig = {
+  apiKey: "AIzaSyDMMLv3t0evr-q9dD0-4bnzbeg2jlivTNQ",
+  authDomain: "gangdong-simbang.firebaseapp.com",
+  databaseURL: "https://gangdong-simbang-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "gangdong-simbang",
+};
+
+const configured = firebaseConfig.apiKey !== "여기에_입력";
+let db = null;
+if (configured) {
+  firebase.initializeApp(firebaseConfig);
+  db = firebase.database();
+}
+
+const $ = id => document.getElementById(id);
+
+$('applyForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const errBox = $('errBox');
+  errBox.style.display = 'none';
+
+  const role = document.querySelector('input[name=role]:checked');
+  if (!role) {
+    errBox.textContent = '직책을 선택해 주세요.';
+    errBox.style.display = 'block';
+    errBox.scrollIntoView({behavior:'smooth', block:'center'});
+    return;
+  }
+
+  const data = {
+    name: $('name').value.trim(),
+    phone: $('phone').value.trim(),
+    dept: $('dept').value,
+    unit: $('unit').value.trim(),
+    role: role.value,
+    health: $('health').value.trim(),
+    reason: $('reason').value.trim(),
+    wishDate: $('wishDate').value.trim(),
+    status: '신청접수',
+    memo: '',
+    createdAt: Date.now()
+  };
+
+  const btn = $('btnSubmit');
+  btn.disabled = true;
+  btn.textContent = '접수 중...';
+
+  try {
+    if (!configured) {
+      // Firebase 미설정 시 데모 동작 (실배포 전 확인용)
+      await new Promise(r => setTimeout(r, 600));
+      console.warn('Firebase 설정이����ZЃ�z#�ZЃ�6î�������Ns��p��>g�zG�Z#�*׮.#�.�����(����􁕱͔��(�������݅�Ё���ɕ���٥ͥхѥ��I��Օ��̜����͠���ф��(�����(�������������ɴ�����屔��������􀝹�����(�����������	�������屔��������􀝉������(����ݥ���ܹ͍ɽ��Q���ѽ���������٥���͵��Ѡ����(��􁍅э�����Ȥ��(�������	��ѕ����ѕ�Ѐ􀟲�G�"`���D��b���c�� ���s�w�Z#�*׮.#�.����z��.p��n��.��.p��.s�>�VЃ����jP���(�������	����屔��������􀝉������(�����Ѹ���ͅ�����􁙅�͔�(�����Ѹ�ѕ����ѕ�Ѐ􀟲.��¤��.��ʷ�Vc�����(���)���(�͍ɥ���(𽉽���(�ѵ��(
