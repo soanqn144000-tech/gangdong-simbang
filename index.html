@@ -7,49 +7,27 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pretendard/1.3.9/static/pretendard.min.css">
 <style>
 :root{
-  --ink:#22303e;        /* ë³¸ë¬¸ ì‰í¬ */
-  --deep:#31577a;       /* ë”¥ ë¸”ë£¨ â€” ì‹ ë¢°/êµíšŒ */
-  --deep-dark:#254666;
-  --paper:#f6f4ef;      /* ì¢…ì´ ë°°ê²½ */
-  --card:#ffffff;
-  --line:#e3ddd2;
-  --accent:#b98a3c;     /* ì ˆì œëœ ê¸ˆìƒ‰ í¬ì¸íŠ¸ */
-  --muted:#7d8896;
-  --danger:#b4483c;
+  --ink:#22303e; --deep:#31577a; --deep-dark:#254666; --paper:#f6f4ef;
+  --card:#ffffff; --line:#e3ddd2; --accent:#b98a3c; --muted:#7d8896; --danger:#b4483c;
 }
 *{margin:0;padding:0;box-sizing:border-box}
 body{
   font-family:'Pretendard',-apple-system,BlinkMacSystemFont,'Malgun Gothic',sans-serif;
-  background:var(--paper);
-  color:var(--ink);
-  line-height:1.6;
-  padding-bottom:60px;
+  background:var(--paper); color:var(--ink); line-height:1.6; padding-bottom:60px;
 }
 .wrap{max-width:560px;margin:0 auto;padding:0 20px}
-
-/* í—¤ë” */
 header{
   background:linear-gradient(160deg,#31577a 0%,#223f5a 100%);
-  color:#fff;
-  padding:44px 0 36px;
-  text-align:center;
-  border-bottom:3px solid var(--accent);
+  color:#fff; padding:44px 0 36px; text-align:center; border-bottom:3px solid var(--accent);
 }
-header .eyebrow{
-  font-size:12px;letter-spacing:.35em;color:#c9b98a;
-  text-transform:uppercase;margin-bottom:12px;font-weight:600;
-}
+header .eyebrow{font-size:12px;letter-spacing:.35em;color:#c9b98a;text-transform:uppercase;margin-bottom:12px;font-weight:600}
 header h1{font-size:24px;font-weight:700;letter-spacing:-0.01em}
 header p{font-size:14px;color:#d8e2ec;margin-top:10px}
-
-/* ì•ˆë‚´ */
 .notice{
   background:#fdfbf6;border:1px solid var(--line);border-left:4px solid var(--accent);
   border-radius:10px;padding:16px 18px;margin:24px 0;font-size:13.5px;color:#5a6472;
 }
 .notice strong{color:var(--ink)}
-
-/* í¼ */
 form{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:26px 22px;box-shadow:0 2px 12px rgba(40,60,80,.05)}
 .field{margin-bottom:22px}
 label.top{display:block;font-size:14px;font-weight:700;margin-bottom:8px}
@@ -61,8 +39,6 @@ input[type=text],input[type=tel],textarea,select{
 }
 input:focus,textarea:focus,select:focus{outline:none;border-color:var(--deep);box-shadow:0 0 0 3px rgba(49,87,122,.12)}
 textarea{resize:vertical;min-height:96px}
-
-/* ë¼ë””ì˜¤ ì¹´ë“œ */
 .radio-grid{display:grid;gap:8px}
 .radio-card{position:relative}
 .radio-card input{position:absolute;opacity:0}
@@ -71,28 +47,19 @@ textarea{resize:vertical;min-height:96px}
   padding:11px 14px;font-size:14.5px;cursor:pointer;background:#fff;transition:.15s;
 }
 .radio-card small{display:block;font-size:12px;color:var(--muted);margin-top:2px}
-.radio-card input:checked + span{
-  border-color:var(--deep);background:#eef3f8;font-weight:700;color:var(--deep);
-}
+.radio-card input:checked + span{border-color:var(--deep);background:#eef3f8;font-weight:700;color:var(--deep)}
 .radio-card input:focus-visible + span{box-shadow:0 0 0 3px rgba(49,87,122,.25)}
-
 .two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-
-/* ì œì¶œ */
 button.submit{
   width:100%;background:var(--deep);color:#fff;border:none;border-radius:10px;
-  padding:15px;font-size:16px;font-weight:700;cursor:pointer;font-family:inherit;
-  transition:.15s;margin-top:6px;
+  padding:15px;font-size:16px;font-weight:700;cursor:pointer;font-family:inherit;transition:.15s;margin-top:6px;
 }
 button.submit:hover{background:#274666}
 button.submit:disabled{background:#9db0c2;cursor:not-allowed}
-
-/* ì™„ë£Œ í™”ë©´ */
 .done{display:none;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:44px 24px;text-align:center;margin-top:24px}
 .done .mark{width:56px;height:56px;border-radius:50%;background:#eef3f8;border:2px solid var(--deep);color:var(--deep);font-size:26px;line-height:52px;margin:0 auto 16px}
 .done h2{font-size:20px;margin-bottom:10px}
 .done p{font-size:14px;color:var(--muted)}
-
 .err{display:none;background:#fbeeec;border:1px solid #e6c3be;color:var(--danger);border-radius:9px;padding:12px 14px;font-size:13.5px;margin-bottom:16px}
 footer{text-align:center;font-size:12px;color:var(--muted);margin-top:28px}
 </style>
@@ -183,7 +150,7 @@ footer{text-align:center;font-size:12px;color:var(--muted);margin-top:28px}
   </form>
 
   <div class="done" id="doneBox">
-    <div class="mark">âœ“</div>
+    <div class="mark">V</div>
     <h2>ì‹ ì²­ì´ ì ‘ìˆ˜ë˜ì—ˆìŠµë‹ˆë‹¤</h2>
     <p>ë‚´ë¬´ë¶€ì—ì„œ ë‚´ìš©ì„ í™•ì¸í•œ í›„<br>ìš°ì„ ìˆœìœ„ì— ë”°ë¼ ì‹¬ë°© ì¼ì •ì„ ì•ˆë‚´ë“œë¦¬ê² ìŠµë‹ˆë‹¤.</p>
   </div>
@@ -194,10 +161,6 @@ footer{text-align:center;font-size:12px;color:var(--muted);margin-top:28px}
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
 <script>
-/* ============================================================
-   [ì„¤ì •] ê¸°ì¡´ ê°•ë™êµíšŒ Firebase í”„ë¡œì íŠ¸ ì„¤ì •ê°’ì„ ë¶™ì—¬ë„£ìœ¼ì„¸ìš”.
-   Firebase ì½˜ì†” â†’ í”„ë¡œì íŠ¸ ì„¤ì • â†’ ì¼ë°˜ â†’ ë‚´ ì•± â†’ SDK ì„¤ì •
-   ============================================================ */
 const firebaseConfig = {
   apiKey: "AIzaSyDMMLv3t0evr-q9dD0-4bnzbeg2jlivTNQ",
   authDomain: "gangdong-simbang.firebaseapp.com",
@@ -205,13 +168,8 @@ const firebaseConfig = {
   projectId: "gangdong-simbang",
 };
 
-const configured = firebaseConfig.apiKey !== "ì—¬ê¸°ì—_ì…ë ¥";
-let db = null;
-if (configured) {
-  firebase.initializeApp(firebaseConfig);
-  db = firebase.database();
-}
-
+firebase.initializeApp(firebaseConfig);
+const db = firebase.database();
 const $ = id => document.getElementById(id);
 
 $('applyForm').addEventListener('submit', async (e) => {
@@ -246,7 +204,17 @@ $('applyForm').addEventListener('submit', async (e) => {
   btn.textContent = 'ì ‘ìˆ˜ ì¤‘...';
 
   try {
-    if (!configured) {
-      // Firebase ë¯¸ì„¤ì • ì‹œ ë°ëª¨ ë™ì‘ (ì‹¤ë°°í¬ ì „ í™•ì¸ìš©)
-      await new Promise(r => setTimeout(r, 600));
-      console.warn('Firebase ì„¤ì •ì´ƒ®æ²ZĞƒ²z#²ZĞƒ®6Ã®ª ƒ®ª£®Ns®†pƒ®>g²zG¶Z#²*×®.#®.¸œ¤ì(€€€ô•±Í”ì(€€€€€…İ…¥Ğ‘ˆ¹É•˜ Ù¥Í¥Ñ…Ñ¥½¹I•ÅÕ•ÍÑÌœ¤¹ÁÕÍ ¡‘…Ñ„¤ì(€€€ô(€€€€ …ÁÁ±å½É´œ¤¹ÍÑå±”¹‘¥ÍÁ±…ä€ô€¹½¹”œì(€€€€ ‘½¹•	½àœ¤¹ÍÑå±”¹‘¥ÍÁ±…ä€ô€‰±½¬œì(€€€İ¥¹‘½Ü¹ÍÉ½±±Q¼¡íÑ½ÀèÀ°‰•¡…Ù¥½ÈèÍµ½½Ñ ô¤ì(€ô…Ñ €¡•ÉÈ¤ì(€€€•ÉÉ	½à¹Ñ•áÑ½¹Ñ•¹Ğ€ô€Ÿ²‚G²"`ƒ²’Dƒ²b“®–cªÂ ƒ®Âs²w¶Z#²*×®.#®.¸ƒ²zƒ².pƒ¶nƒ®.“².pƒ².s®>¶VĞƒ²ó²ã²jP¸œì(€€€•ÉÉ	½à¹ÍÑå±”¹‘¥ÍÁ±…ä€ô€‰±½¬œì(€€€‰Ñ¸¹‘¥Í…‰±•€ô™…±Í”ì(€€€‰Ñ¸¹Ñ•áÑ½¹Ñ•¹Ğ€ô€Ÿ².³®Â¤ƒ².ƒ²Ê·¶VcªâÀœì(€ô)ô¤ì(ğ½ÍÉ¥ÁĞø(ğ½‰½‘äø(ğ½¡Ñµ°ø(
+    await db.ref('visitationRequests').push(data);
+    $('applyForm').style.display = 'none';
+    $('doneBox').style.display = 'block';
+    window.scrollTo({top:0, behavior:'smooth'});
+  } catch (err) {
+    errBox.textContent = 'ì ‘ìˆ˜ ì¤‘ ì˜¤ë¥˜ê°€ ë°œìƒí–ˆìŠµë‹ˆë‹¤. ì ì‹œ í›„ ë‹¤ì‹œ ì‹œë„í•´ ì£¼ì„¸ìš”.';
+    errBox.style.display = 'block';
+    btn.disabled = false;
+    btn.textContent = 'ì‹¬ë°© ì‹ ì²­í•˜ê¸°';
+  }
+});
+</script>
+</body>
+</html>

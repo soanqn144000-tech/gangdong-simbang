@@ -7,49 +7,22 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pretendard/1.3.9/static/pretendard.min.css">
 <style>
 :root{
-  --ink:#22303e;
-  --deep:#31577a;
-  --deep-dark:#254666;
-  --paper:#f6f4ef;
-  --card:#ffffff;
-  --line:#e3ddd2;
-  --accent:#b98a3c;
-  --muted:#7d8896;
-  --danger:#b4483c;
-  --ok:#3e7d55;
+  --ink:#22303e; --deep:#31577a; --deep-dark:#254666; --paper:#f6f4ef; --card:#ffffff;
+  --line:#e3ddd2; --accent:#b98a3c; --muted:#7d8896; --danger:#b4483c; --ok:#3e7d55;
 }
 *{margin:0;padding:0;box-sizing:border-box}
-body{
-  font-family:'Pretendard',-apple-system,BlinkMacSystemFont,'Malgun Gothic',sans-serif;
-  background:var(--paper);color:var(--ink);line-height:1.55;
-}
+body{font-family:'Pretendard',-apple-system,BlinkMacSystemFont,'Malgun Gothic',sans-serif;background:var(--paper);color:var(--ink);line-height:1.55}
 .wrap{max-width:1280px;margin:0 auto;padding:0 24px}
-
-/* 헤더 */
-header{
-  background:linear-gradient(160deg,#31577a 0%,#223f5a 100%);
-  color:#fff;padding:26px 0;border-bottom:3px solid var(--accent);
-}
+header{background:linear-gradient(160deg,#31577a 0%,#223f5a 100%);color:#fff;padding:26px 0;border-bottom:3px solid var(--accent)}
 header .wrap{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
 header .eyebrow{font-size:11px;letter-spacing:.3em;color:#c9b98a;font-weight:600;margin-bottom:6px}
 header h1{font-size:21px;font-weight:700}
 header .actions{display:flex;gap:8px}
-.btn{
-  border:none;border-radius:8px;padding:10px 16px;font-size:13.5px;font-weight:600;
-  cursor:pointer;font-family:inherit;transition:.15s;
-}
+.btn{border:none;border-radius:8px;padding:10px 16px;font-size:13.5px;font-weight:600;cursor:pointer;font-family:inherit;transition:.15s}
 .btn-gold{background:var(--accent);color:#fff}
 .btn-gold:hover{background:#a3772f}
 .btn-ghost{background:rgba(255,255,255,.14);color:#fff;border:1px solid rgba(255,255,255,.3)}
 .btn-ghost:hover{background:rgba(255,255,255,.24)}
-
-/* 데모 배너 */
-.demo-banner{
-  background:#fdf3dd;border-bottom:1px solid #ecd9a8;color:#7a5c17;
-  font-size:13px;padding:9px 0;text-align:center;display:none;
-}
-
-/* 통계 */
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:26px 0}
 .stat{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 20px}
 .stat .label{font-size:12.5px;color:var(--muted);font-weight:600;margin-bottom:4px}
@@ -57,116 +30,60 @@ header .actions{display:flex;gap:8px}
 .stat.health .num{color:var(--danger)}
 .stat.wait .num{color:var(--deep)}
 .stat.done .num{color:var(--ok)}
-
-/* 필터 */
-.filters{
-  background:var(--card);border:1px solid var(--line);border-radius:12px;
-  padding:14px 16px;display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:18px;
-}
-.filters select,.filters input{
-  border:1.5px solid var(--line);border-radius:8px;padding:9px 12px;
-  font-size:13.5px;font-family:inherit;background:#fff;color:var(--ink);
-}
+.filters{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:18px}
+.filters select,.filters input{border:1.5px solid var(--line);border-radius:8px;padding:9px 12px;font-size:13.5px;font-family:inherit;background:#fff;color:var(--ink)}
 .filters input{flex:1;min-width:160px}
 .filters select:focus,.filters input:focus{outline:none;border-color:var(--deep)}
 .count-note{font-size:13px;color:var(--muted);margin-left:auto}
-
-/* 테이블 */
 .board{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-bottom:40px}
 table{width:100%;border-collapse:collapse;font-size:13.5px}
-thead th{
-  background:#eef1ee;color:#54606e;font-size:12px;font-weight:700;
-  padding:11px 12px;text-align:left;border-bottom:1px solid var(--line);white-space:nowrap;
-}
+thead th{background:#eef1ee;color:#54606e;font-size:12px;font-weight:700;padding:11px 12px;text-align:left;border-bottom:1px solid var(--line);white-space:nowrap}
 tbody td{padding:12px;border-bottom:1px solid #efece5;vertical-align:top}
 tbody tr:last-child td{border-bottom:none}
 tbody tr.health-row{background:#fdf7f3}
-.rank{
-  display:inline-block;width:30px;height:30px;border-radius:50%;
-  background:var(--deep);color:#fff;font-weight:800;font-size:13px;
-  text-align:center;line-height:30px;
-}
+tbody tr{cursor:pointer}
+tbody tr:hover td{background:rgba(49,87,122,.04)}
+tbody tr.health-row:hover td{background:#faf0ea}
+.rank{display:inline-block;width:30px;height:30px;border-radius:50%;background:var(--deep);color:#fff;font-weight:800;font-size:13px;text-align:center;line-height:30px}
 tr.health-row .rank{background:var(--danger)}
 .name{font-weight:700;font-size:14.5px}
 .sub{font-size:12px;color:var(--muted);margin-top:2px}
-.badge{
-  display:inline-block;border-radius:6px;padding:3px 9px;font-size:12px;font-weight:700;white-space:nowrap;
-}
+.badge{display:inline-block;border-radius:6px;padding:3px 9px;font-size:12px;font-weight:700;white-space:nowrap}
 .b-role{background:#eef3f8;color:var(--deep)}
 .b-role.top{background:var(--deep);color:#fff}
-.b-h0{background:var(--danger);color:#fff}          /* 항암치료중 */
-.b-h1{background:#f2d7d3;color:#8f352b}             /* 투병중 */
-.b-h2{background:#f6e7cf;color:#7a5c17}             /* 직병 */
-.b-h3{background:#eef1ee;color:var(--muted);font-weight:600} /* 해당없음 */
+.b-h1{background:#f2d7d3;color:#8f352b}
+.b-h3{background:#eef1ee;color:var(--muted);font-weight:600}
 .reason{max-width:260px;font-size:13px;color:#46525f}
-.reason .detail{font-size:12px;color:var(--danger);margin-top:3px;font-weight:600}
-td select.status{
-  border:1.5px solid var(--line);border-radius:7px;padding:6px 8px;
-  font-size:12.5px;font-family:inherit;font-weight:600;background:#fff;
-}
+td select.status{border:1.5px solid var(--line);border-radius:7px;padding:6px 8px;font-size:12.5px;font-family:inherit;font-weight:600;background:#fff}
 td select.status.s2{border-color:#b8cde0;color:var(--deep)}
 td select.status.s3{border-color:#cfa94f;color:#7a5c17}
 td select.status.s4{border-color:#9cc4aa;color:var(--ok)}
-td input.memo{
-  width:150px;border:1.5px solid transparent;border-radius:7px;padding:6px 8px;
-  font-size:12.5px;font-family:inherit;background:#f6f4ef;
-}
+td input.memo{width:150px;border:1.5px solid transparent;border-radius:7px;padding:6px 8px;font-size:12.5px;font-family:inherit;background:#f6f4ef}
 td input.memo:focus{outline:none;border-color:var(--deep);background:#fff}
 .del{background:none;border:none;color:#c2b8a8;cursor:pointer;font-size:16px;padding:4px}
 .del:hover{color:var(--danger)}
 .empty{text-align:center;padding:60px 20px;color:var(--muted);font-size:14px}
-
-/* 인쇄 */
 @media print{
-  header .actions,.filters,.demo-banner,thead th:last-child,tbody td:last-child,
-  td select.status,td input.memo{display:none!important}
+  header .actions,.filters,thead th:last-child,tbody td:last-child,td select.status,td input.memo{display:none!important}
   td .status-print,td .memo-print{display:block!important;font-size:12px}
   body{background:#fff}
   .board{border:none;box-shadow:none}
-  .stats{grid-template-columns:repeat(4,1fr)}
   header{background:#fff!important;color:#000;border-bottom:2px solid #000;-webkit-print-color-adjust:exact}
   header .eyebrow{color:#555}
 }
 .status-print,.memo-print{display:none}
-
-/* 로그인 게이트 */
-.gate{
-  position:fixed;inset:0;background:var(--paper);z-index:100;
-  display:flex;align-items:center;justify-content:center;padding:20px;
-}
-.gate-card{
-  background:#fff;border:1px solid var(--line);border-radius:16px;
-  padding:44px 36px;max-width:400px;width:100%;text-align:center;
-  box-shadow:0 8px 32px rgba(40,60,80,.08);
-}
+.gate{position:fixed;inset:0;background:var(--paper);z-index:100;display:flex;align-items:center;justify-content:center;padding:20px}
+.gate-card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:44px 36px;max-width:400px;width:100%;text-align:center;box-shadow:0 8px 32px rgba(40,60,80,.08)}
 .gate-card .eyebrow{font-size:11px;letter-spacing:.3em;color:var(--accent);font-weight:700;margin-bottom:10px}
 .gate-card h2{font-size:20px;margin-bottom:8px}
 .gate-card p{font-size:13.5px;color:var(--muted);margin-bottom:24px}
-.gate-card .g-btn{
-  display:inline-flex;align-items:center;gap:10px;
-  background:var(--deep);color:#fff;border:none;border-radius:10px;
-  padding:13px 22px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;
-}
+.gate-card .g-btn{display:inline-flex;align-items:center;gap:10px;background:var(--deep);color:#fff;border:none;border-radius:10px;padding:13px 22px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit}
 .gate-card .g-btn:hover{background:var(--deep-dark)}
 .gate-card .gate-err{display:none;margin-top:16px;font-size:13px;color:var(--danger)}
-
-/* 상세 모달 */
-tbody tr{cursor:pointer}
-tbody tr:hover td{background:rgba(49,87,122,.04)}
-tbody tr.health-row:hover td{background:#faf0ea}
-.overlay{
-  display:none;position:fixed;inset:0;background:rgba(30,40,52,.45);
-  z-index:50;align-items:flex-start;justify-content:center;padding:40px 16px;overflow-y:auto;
-}
+.overlay{display:none;position:fixed;inset:0;background:rgba(30,40,52,.45);z-index:50;align-items:flex-start;justify-content:center;padding:40px 16px;overflow-y:auto}
 .overlay.open{display:flex}
-.modal{
-  background:#fff;border-radius:14px;max-width:560px;width:100%;
-  box-shadow:0 12px 48px rgba(20,30,45,.25);overflow:hidden;
-}
-.modal-head{
-  background:linear-gradient(160deg,#31577a 0%,#223f5a 100%);color:#fff;
-  padding:20px 24px;display:flex;justify-content:space-between;align-items:center;
-}
+.modal{background:#fff;border-radius:14px;max-width:560px;width:100%;box-shadow:0 12px 48px rgba(20,30,45,.25);overflow:hidden}
+.modal-head{background:linear-gradient(160deg,#31577a 0%,#223f5a 100%);color:#fff;padding:20px 24px;display:flex;justify-content:space-between;align-items:center}
 .modal-head h2{font-size:18px;font-weight:700}
 .modal-head .close{background:none;border:none;color:#c7d4e0;font-size:22px;cursor:pointer;line-height:1}
 .modal-head .close:hover{color:#fff}
@@ -175,24 +92,17 @@ tbody tr.health-row:hover td{background:#faf0ea}
 .dl dt{color:var(--muted);font-weight:600;font-size:13px}
 .dl dd{color:var(--ink)}
 .dl dd.health-txt{color:#8f352b;font-weight:600}
-.modal .reason-full{
-  background:#f6f4ef;border-radius:9px;padding:13px 15px;font-size:14px;
-  color:#3c4854;margin-bottom:18px;line-height:1.65;
-}
+.modal .reason-full{background:#f6f4ef;border-radius:9px;padding:13px 15px;font-size:14px;color:#3c4854;margin-bottom:18px;line-height:1.65}
 .modal .sec-label{font-size:13px;font-weight:700;margin-bottom:6px;color:var(--ink)}
 .modal-manage{border-top:1px solid var(--line);padding-top:16px;display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .modal-manage label{display:block;font-size:12.5px;font-weight:700;color:var(--muted);margin-bottom:5px}
-.modal-manage select,.modal-manage input{
-  width:100%;border:1.5px solid var(--line);border-radius:8px;padding:9px 11px;
-  font-size:14px;font-family:inherit;background:#fff;
-}
+.modal-manage select,.modal-manage input{width:100%;border:1.5px solid var(--line);border-radius:8px;padding:9px 11px;font-size:14px;font-family:inherit;background:#fff}
 .modal-manage .full{grid-column:1/-1}
 .modal-foot{padding:16px 24px 22px;display:flex;gap:8px;justify-content:flex-end}
 .btn-deep{background:var(--deep);color:#fff}
 .btn-deep:hover{background:var(--deep-dark)}
 .btn-line{background:#fff;color:var(--muted);border:1.5px solid var(--line)}
 .btn-line:hover{color:var(--ink)}
-
 @media(max-width:900px){
   .stats{grid-template-columns:repeat(2,1fr)}
   .board{overflow-x:auto}
@@ -202,7 +112,7 @@ tbody tr.health-row:hover td{background:#faf0ea}
 </head>
 <body>
 
-<div class="gate" id="gate" style="display:none">
+<div class="gate" id="gate">
   <div class="gate-card">
     <div class="eyebrow">GANGDONG CHURCH · 내무부</div>
     <h2>담임강사 심방 관리</h2>
@@ -210,10 +120,6 @@ tbody tr.health-row:hover td{background:#faf0ea}
     <button class="g-btn" onclick="doLogin()">G &nbsp;Google 계정으로 로그인</button>
     <div class="gate-err" id="gateErr">승인되지 않은 계정입니다. 내무부 관리자 계정으로 로그인해 주세요.</div>
   </div>
-</div>
-
-<div class="demo-banner" id="demoBanner">
-  ⚠ Firebase 설정이 입력되지 않아 <strong>예시 데이터</strong>로 표시 중입니다. 파일 하단 firebaseConfig에 프로젝트 설정을 입력하세요.
 </div>
 
 <header>
@@ -287,12 +193,11 @@ tbody tr.health-row:hover td{background:#faf0ea}
 
 </div>
 
-<!-- 상세 보기 모달 -->
-<div class="overlay" id="overlay" onclick="if(event.target===this)closeDetail()">
+<div class="overlay" id="overlay">
   <div class="modal">
     <div class="modal-head">
       <h2 id="mName">신청 상세</h2>
-      <button class="close" onclick="closeDetail()">✕</button>
+      <button class="close" onclick="closeDetail()">X</button>
     </div>
     <div class="modal-body">
       <dl class="dl">
@@ -333,47 +238,27 @@ tbody tr.health-row:hover td{background:#faf0ea}
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
 <script>
-/* ============================================================
-   [설정] 신청 폼과 동일한 Firebase 프로젝트 설정값을 입력하세요.
-   ============================================================ */
 const firebaseConfig = {
   apiKey: "AIzaSyDMMLv3t0evr-q9dD0-4bnzbeg2jlivTNQ",
   authDomain: "gangdong-simbang.firebaseapp.com",
   databaseURL: "https://gangdong-simbang-default-rtdb.asia-southeast1.firebasedatabase.app",
   projectId: "gangdong-simbang",
 };
-
-/* 대시보드 접근 허용 관리자 (Google 로그인 이메일) */
 const ADMIN_EMAILS = ['huni00321120@gmail.com'];
 
-/* 우선순위 정의: 건강 기재자 최우선 → 직책 순 */
-const ROLE_RANK   = { '중진':0, '교역자':1, '임지역장':2, '교관':3, '팀장':4, '구역장':5 };
+const ROLE_RANK = { '중진':0, '교역자':1, '임지역장':2, '교관':3, '팀장':4, '구역장':5 };
 const STATUS_CLASS = { '신청접수':'', '검토중':'s2', '매칭완료':'s3', '심방완료':'s4' };
 const STATUSES = ['신청접수','검토중','매칭완료','심방완료'];
 
-/* 건강 기재 여부 판단 (구버전 '해당없음' 값도 미기재로 처리) */
 function hasHealth(d){
   const h = (d.health||'').trim();
   return h !== '' && h !== '해당없음';
 }
 
-const configured = firebaseConfig.apiKey !== "여기에_입력";
 let db = null;
-let requests = {};   // { key: data }
-
-/* 예시 데이터 (Firebase 미설정 시) */
-const DEMO = {
-  d1:{name:'김은혜',phone:'010-1234-0001',dept:'부녀회',unit:'2부 1팀',role:'팀장',health:'장기 치료 중으로 통원하고 있습니다',reason:'치료 중 신앙의 힘을 얻고자 담임강사님 심방을 요청드립니다.',wishDate:'가급적 빨리',status:'신청접수',memo:'',createdAt:Date.now()-86400000*2},
-  d2:{name:'박성실',phone:'010-1234-0002',dept:'24부서',unit:'교육부',role:'교역자',health:'재활 치료 중입니다',reason:'가정 심방을 통해 위로받고 싶습니다.',wishDate:'8월 중',status:'검토중',memo:'거동 불편, 자택 심방',createdAt:Date.now()-86400000*5},
-  d3:{name:'이충성',phone:'010-1234-0003',dept:'자문회',unit:'',role:'중진',health:'',reason:'가정에 어려운 일이 있어 말씀과 기도 부탁드립니다.',wishDate:'주중 오후',status:'신청접수',memo:'',createdAt:Date.now()-86400000*3},
-  d4:{name:'최믿음',phone:'010-1234-0004',dept:'청년회',unit:'3부 2팀 5구역',role:'구역장',health:'만성질환으로 관리 중입니다',reason:'구역 관리와 건강 문제로 심방을 요청합니다.',wishDate:'',status:'신청접수',memo:'',createdAt:Date.now()-86400000*1},
-  d5:{name:'정소망',phone:'010-1234-0005',dept:'부녀회',unit:'1부 3팀',role:'교관',health:'',reason:'교육 사역 관련 상담을 받고 싶습니다.',wishDate:'9월 초',status:'매칭완료',scheduledDate:'2026-09-03',memo:'14시 확정',createdAt:Date.now()-86400000*8},
-  d6:{name:'한신실',phone:'010-1234-0006',dept:'장년회',unit:'2부 1팀 2구역',role:'구역장',health:'',reason:'구역원 돌봄 관련 지도 말씀을 듣고 싶습니다.',wishDate:'',status:'심방완료',memo:'7/22 완료',createdAt:Date.now()-86400000*20},
-};
-
+let requests = {};
 const $ = id => document.getElementById(id);
 
-/* 정렬: 건강 기재자 → 직책 → 신청일 */
 function sortEntries(entries){
   return entries.sort((a,b)=>{
     const h = (hasHealth(a[1])?0:1) - (hasHealth(b[1])?0:1);
@@ -387,11 +272,11 @@ function sortEntries(entries){
 function fmtDate(ts){
   if(!ts) return '-';
   const d = new Date(ts);
-  return `${d.getFullYear()}.${String(d.getMonth()+1).padStart(2,'0')}.${String(d.getDate()).padStart(2,'0')}`;
+  return d.getFullYear() + '.' + String(d.getMonth()+1).padStart(2,'0') + '.' + String(d.getDate()).padStart(2,'0');
 }
 
 function esc(s){
-  return String(s??'').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  return String(s==null?'':s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 }
 
 function render(){
@@ -401,15 +286,14 @@ function render(){
 
   const all = sortEntries(Object.entries(requests));
 
-  /* 통계는 전체 기준 */
   $('stTotal').textContent  = all.length;
-  $('stHealth').textContent = all.filter(([,d]) => hasHealth(d)).length;
-  $('stWait').textContent   = all.filter(([,d]) => d.status==='신청접수'||d.status==='검토중').length;
-  $('stDone').textContent   = all.filter(([,d]) => d.status==='심방완료').length;
+  $('stHealth').textContent = all.filter(function(p){return hasHealth(p[1]);}).length;
+  $('stWait').textContent   = all.filter(function(p){return p[1].status==='신청접수'||p[1].status==='검토중';}).length;
+  $('stDone').textContent   = all.filter(function(p){return p[1].status==='심방완료';}).length;
 
-  /* 필터 적용 (순위 번호는 전체 정렬 기준 유지) */
   const rows = [];
-  all.forEach(([key,d], i) => {
+  all.forEach(function(pair, i){
+    const key=pair[0], d=pair[1];
     if (fDept && d.dept!==fDept) return;
     if (fRole && d.role!==fRole) return;
     if (fHealth==='기재' && !hasHealth(d)) return;
@@ -419,41 +303,42 @@ function render(){
     rows.push([key, d, i+1]);
   });
 
-  $('countNote').textContent = `${rows.length}건 표시 / 전체 ${all.length}건`;
+  $('countNote').textContent = rows.length + '건 표시 / 전체 ' + all.length + '건';
   $('emptyMsg').style.display = rows.length ? 'none' : 'block';
 
-  $('tbody').innerHTML = rows.map(([key,d,rank])=>{
+  $('tbody').innerHTML = rows.map(function(row){
+    const key=row[0], d=row[1], rank=row[2];
     const isHealth = hasHealth(d);
     const roleTop = d.role==='중진'||d.role==='교역자';
-    return `
-    <tr class="${isHealth?'health-row':''}" onclick="rowClick(event,'${key}')">
-      <td><span class="rank">${rank}</span></td>
-      <td><div class="name">${esc(d.name)}</div><div class="sub">${esc(d.phone)}</div></td>
-      <td>${esc(d.dept)}<div class="sub">${esc(d.unit)}</div></td>
-      <td><span class="badge b-role ${roleTop?'top':''}">${esc(d.role)}</span></td>
-      <td class="reason" style="max-width:180px">
-        ${isHealth
-          ? `<span class="badge b-h1">건강 우선</span><div class="sub" style="margin-top:5px;color:#8f352b">${esc(d.health)}</div>`
-          : `<span class="badge b-h3">—</span>`}
-      </td>
-      <td class="reason">${esc(d.reason)}
-        ${d.wishDate?`<div class="sub">희망: ${esc(d.wishDate)}</div>`:''}
-      </td>
-      <td style="white-space:nowrap">${fmtDate(d.createdAt)}</td>
-      <td>
-        <select class="status ${STATUS_CLASS[d.status]||''}" onchange="updateStatus('${key}',this.value)">
-          ${STATUSES.map(s=>`<option ${s===d.status?'selected':''}>${s}</option>`).join('')}
-        </select>
-        <div class="status-print">상태: ${esc(d.status)}</div>
-        ${d.scheduledDate?`<div class="sub" style="margin-top:5px;font-weight:700;color:var(--deep)">예정: ${esc(d.scheduledDate)}</div>`:''}
-        <div style="margin-top:6px">
-          <input class="memo" value="${esc(d.memo)}" placeholder="내무부 메모"
-                 onchange="updateMemo('${key}',this.value)">
-        </div>
-        ${d.memo?`<div class="memo-print">메모: ${esc(d.memo)}</div>`:''}
-      </td>
-      <td><button class="del" title="삭제" onclick="removeReq('${key}','${esc(d.name)}')">✕</button></td>
-    </tr>`;
+    let h = '';
+    h += '<tr class="' + (isHealth?'health-row':'') + '" onclick="rowClick(event,\'' + key + '\')">';
+    h += '<td><span class="rank">' + rank + '</span></td>';
+    h += '<td><div class="name">' + esc(d.name) + '</div><div class="sub">' + esc(d.phone) + '</div></td>';
+    h += '<td>' + esc(d.dept) + '<div class="sub">' + esc(d.unit) + '</div></td>';
+    h += '<td><span class="badge b-role ' + (roleTop?'top':'') + '">' + esc(d.role) + '</span></td>';
+    h += '<td class="reason" style="max-width:180px">';
+    if (isHealth) {
+      h += '<span class="badge b-h1">건강 우선</span><div class="sub" style="margin-top:5px;color:#8f352b">' + esc(d.health) + '</div>';
+    } else {
+      h += '<span class="badge b-h3">-</span>';
+    }
+    h += '</td>';
+    h += '<td class="reason">' + esc(d.reason);
+    if (d.wishDate) h += '<div class="sub">희망: ' + esc(d.wishDate) + '</div>';
+    h += '</td>';
+    h += '<td style="white-space:nowrap">' + fmtDate(d.createdAt) + '</td>';
+    h += '<td>';
+    h += '<select class="status ' + (STATUS_CLASS[d.status]||'') + '" onchange="updateStatus(\'' + key + '\',this.value)">';
+    h += STATUSES.map(function(s){return '<option ' + (s===d.status?'selected':'') + '>' + s + '</option>';}).join('');
+    h += '</select>';
+    h += '<div class="status-print">상태: ' + esc(d.status) + '</div>';
+    if (d.scheduledDate) h += '<div class="sub" style="margin-top:5px;font-weight:700;color:var(--deep)">예정: ' + esc(d.scheduledDate) + '</div>';
+    h += '<div style="margin-top:6px"><input class="memo" value="' + esc(d.memo) + '" placeholder="내무부 메모" onchange="updateMemo(\'' + key + '\',this.value)"></div>';
+    if (d.memo) h += '<div class="memo-print">메모: ' + esc(d.memo) + '</div>';
+    h += '</td>';
+    h += '<td><button class="del" title="삭제" onclick="removeReq(\'' + key + '\',\'' + esc(d.name) + '\')">x</button></td>';
+    h += '</tr>';
+    return h;
   }).join('');
 }
 
@@ -462,12 +347,21 @@ function updateStatus(key,val){
   if (db) db.ref('visitationRequests/'+key+'/status').set(val);
   render();
 }
+function updateMemo(key,val){
+  requests[key].memo = val;
+  if (db) db.ref('visitationRequests/'+key+'/memo').set(val);
+}
+function removeReq(key,name){
+  if (!confirm(name + ' 님의 신청을 삭제할까요?')) return;
+  delete requests[key];
+  if (db) db.ref('visitationRequests/'+key).remove();
+  render();
+}
 
-/* ---------- 상세 모달 ---------- */
 let currentKey = null;
 
 function rowClick(e, key){
-  if (e.target.closest('select,input,button')) return;  // 행 안의 컨트롤 조작은 무시
+  if (e.target.closest('select,input,button')) return;
   openDetail(key);
 }
 
@@ -477,7 +371,7 @@ function openDetail(key){
   currentKey = key;
   $('mName').textContent  = d.name + ' 님 신청 상세';
   $('mPhone').textContent = d.phone || '-';
-  $('mDept').textContent  = [d.dept, d.unit].filter(Boolean).join(' · ') || '-';
+  $('mDept').textContent  = [d.dept, d.unit].filter(Boolean).join(' / ') || '-';
   $('mRole').textContent  = d.role || '-';
   $('mHealth').textContent = hasHealth(d) ? d.health : '기재 없음';
   $('mHealth').className   = hasHealth(d) ? 'health-txt' : '';
@@ -508,41 +402,32 @@ function saveDetail(){
   render();
 }
 
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeDetail(); });
-function updateMemo(key,val){
-  requests[key].memo = val;
-  if (db) db.ref('visitationRequests/'+key+'/memo').set(val);
-}
-function removeReq(key,name){
-  if (!confirm(`${name} 님의 신청을 삭제할까요?`)) return;
-  delete requests[key];
-  if (db) db.ref('visitationRequests/'+key).remove();
-  render();
-}
+document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeDetail(); });
+document.getElementById('overlay').addEventListener('click', function(e){ if (e.target === this) closeDetail(); });
 
 function downloadCSV(){
   const all = sortEntries(Object.entries(requests));
   const head = ['우선순위','성명','연락처','부서','세부소속','직책','건강상태','신청사유','희망시기','신청일','상태','심방예정일','메모'];
   const lines = [head.join(',')];
-  all.forEach(([,d],i)=>{
+  all.forEach(function(pair,i){
+    const d=pair[1];
     const row = [i+1,d.name,d.phone,d.dept,d.unit,d.role,hasHealth(d)?d.health:'',d.reason,d.wishDate,fmtDate(d.createdAt),d.status,d.scheduledDate||'',d.memo]
-      .map(v=>`"${String(v??'').replace(/"/g,'""')}"`);
+      .map(function(v){return '"' + String(v==null?'':v).replace(/"/g,'""') + '"';});
     lines.push(row.join(','));
   });
   const blob = new Blob(['\uFEFF'+lines.join('\n')], {type:'text/csv;charset=utf-8'});
   const a = document.createElement('a');
   a.href = URL.createObjectURL(blob);
-  a.download = `심방신청_우선순위_${fmtDate(Date.now())}.csv`;
+  a.download = '심방신청_우선순위_' + fmtDate(Date.now()) + '.csv';
   a.click();
 }
 
-/* 초기화: Google 로그인 후 데이터 연결 */
 let auth = null;
 let dataAttached = false;
 
 function doLogin(){
   const provider = new firebase.auth.GoogleAuthProvider();
-  auth.signInWithPopup(provider).catch(err => {
+  auth.signInWithPopup(provider).catch(function(err){
     console.error(err);
     $('gateErr').textContent = '로그인 중 오류가 발생했습니다: ' + (err.code||'');
     $('gateErr').style.display = 'block';
@@ -552,41 +437,33 @@ function doLogout(){
   if (auth) auth.signOut();
 }
 
-if (configured){
-  firebase.initializeApp(firebaseConfig);
-  db = firebase.database();
-  auth = firebase.auth();
-  $('gate').style.display = 'flex';
+firebase.initializeApp(firebaseConfig);
+db = firebase.database();
+auth = firebase.auth();
 
-  auth.onAuthStateChanged(user => {
-    const email = user ? (user.email||'').toLowerCase() : '';
-    if (user && ADMIN_EMAILS.includes(email)) {
-      $('gate').style.display = 'none';
-      $('btnLogout').style.display = 'inline-block';
-      if (!dataAttached) {
-        dataAttached = true;
-        db.ref('visitationRequests').on('value', snap => {
-          requests = snap.val() || {};
-          render();
-        });
-      }
-    } else if (user) {
-      /* 승인되지 않은 계정 */
-      $('gateErr').style.display = 'block';
-      auth.signOut();
-    } else {
-      $('gate').style.display = 'flex';
-      $('btnLogout').style.display = 'none';
-      if (dataAttached) { db.ref('visitationRequests').off(); dataAttached = false; }
-      requests = {};
-      render();
+auth.onAuthStateChanged(function(user){
+  const email = user ? (user.email||'').toLowerCase() : '';
+  if (user && ADMIN_EMAILS.includes(email)) {
+    $('gate').style.display = 'none';
+    $('btnLogout').style.display = 'inline-block';
+    if (!dataAttached) {
+      dataAttached = true;
+      db.ref('visitationRequests').on('value', function(snap){
+        requests = snap.val() || {};
+        render();
+      });
     }
-  });
-} else {
-  $('demoBanner').style.display = 'block';
-  requests = DEMO;
-  render();
-}
+  } else if (user) {
+    $('gateErr').style.display = 'block';
+    auth.signOut();
+  } else {
+    $('gate').style.display = 'flex';
+    $('btnLogout').style.display = 'none';
+    if (dataAttached) { db.ref('visitationRequests').off(); dataAttached = false; }
+    requests = {};
+    render();
+  }
+});
 </script>
 </body>
 </html>
