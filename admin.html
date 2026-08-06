@@ -112,16 +112,6 @@ td input.memo:focus{outline:none;border-color:var(--deep);background:#fff}
 </head>
 <body>
 
-<div class="gate" id="gate">
-  <div class="gate-card">
-    <div class="eyebrow">GANGDONG CHURCH · 내무부</div>
-    <h2>담임강사 심방 관리</h2>
-    <p>관리자 전용 페이지입니다.<br>승인된 Google 계정으로 로그인해 주세요.</p>
-    <button class="g-btn" onclick="doLogin()">G &nbsp;Google 계정으로 로그인</button>
-    <div class="gate-err" id="gateErr">승인되지 않은 계정입니다. 내무부 관리자 계정으로 로그인해 주세요.</div>
-  </div>
-</div>
-
 <header>
   <div class="wrap">
     <div>
@@ -131,7 +121,6 @@ td input.memo:focus{outline:none;border-color:var(--deep);background:#fff}
     <div class="actions">
       <button class="btn btn-ghost" onclick="downloadCSV()">CSV 다운로드</button>
       <button class="btn btn-gold" onclick="window.print()">보고용 인쇄</button>
-      <button class="btn btn-ghost" id="btnLogout" style="display:none" onclick="doLogout()">로그아웃</button>
     </div>
   </div>
 </header>
@@ -235,7 +224,6 @@ td input.memo:focus{outline:none;border-color:var(--deep);background:#fff}
 </div>
 
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
 <script>
 const firebaseConfig = {
@@ -244,7 +232,6 @@ const firebaseConfig = {
   databaseURL: "https://gangdong-simbang-default-rtdb.asia-southeast1.firebasedatabase.app",
   projectId: "gangdong-simbang",
 };
-const ADMIN_EMAILS = ['soanqn144000@gmail.com'];
 
 const ROLE_RANK = { '중진':0, '교역자':1, '임지역장':2, '교관':3, '팀장':4, '구역장':5 };
 const STATUS_CLASS = { '신청접수':'', '검토중':'s2', '매칭완료':'s3', '심방완료':'s4' };
@@ -422,47 +409,12 @@ function downloadCSV(){
   a.click();
 }
 
-let auth = null;
-let dataAttached = false;
-
-function doLogin(){
-  const provider = new firebase.auth.GoogleAuthProvider();
-  auth.signInWithPopup(provider).catch(function(err){
-    console.error(err);
-    $('gateErr').textContent = '로그인 중 오류가 발생했습니다: ' + (err.code||'');
-    $('gateErr').style.display = 'block';
-  });
-}
-function doLogout(){
-  if (auth) auth.signOut();
-}
-
+/* 초기화: 로그인 없이 바로 연결 */
 firebase.initializeApp(firebaseConfig);
 db = firebase.database();
-auth = firebase.auth();
-
-auth.onAuthStateChanged(function(user){
-  const email = user ? (user.email||'').toLowerCase() : '';
-  if (user && ADMIN_EMAILS.includes(email)) {
-    $('gate').style.display = 'none';
-    $('btnLogout').style.display = 'inline-block';
-    if (!dataAttached) {
-      dataAttached = true;
-      db.ref('visitationRequests').on('value', function(snap){
-        requests = snap.val() || {};
-        render();
-      });
-    }
-  } else if (user) {
-    $('gateErr').style.display = 'block';
-    auth.signOut();
-  } else {
-    $('gate').style.display = 'flex';
-    $('btnLogout').style.display = 'none';
-    if (dataAttached) { db.ref('visitationRequests').off(); dataAttached = false; }
-    requests = {};
-    render();
-  }
+db.ref('visitationRequests').on('value', function(snap){
+  requests = snap.val() || {};
+  render();
 });
 </script>
 </body>
