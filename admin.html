@@ -111,6 +111,16 @@ td input.memo:focus{outline:none;border-color:var(--deep);background:#fff}
 </style>
 </head>
 <body>
+<div id="gate" style="position:fixed;inset:0;background:#f4f1ea;z-index:9999;display:flex;align-items:center;justify-content:center;padding:16px">
+  <div style="background:#fff;border-radius:14px;padding:32px 28px;max-width:360px;width:100%;text-align:center;box-shadow:0 6px 24px rgba(0,0,0,.08)">
+    <div style="font-size:11px;letter-spacing:.3em;color:#8a7a4a;font-weight:600;margin-bottom:8px">GANGDONG CHURCH · 내무부</div>
+    <h2 style="font-size:20px;margin-bottom:10px;color:#223f5a">담임강사 심방 신청 관리</h2>
+    <p id="gateMsg" style="font-size:14px;color:#555;line-height:1.6;margin-bottom:20px">개인정보가 있는 화면이라<br>허락된 구글 계정으로만 열립니다.</p>
+    <button id="gateBtn" onclick="gateLogin()" style="background:#223f5a;color:#fff;border:0;border-radius:10px;padding:12px 20px;font-size:15px;font-weight:600;cursor:pointer;width:100%">구글 계정으로 로그인</button>
+    <button id="gateOut" onclick="firebase.auth().signOut()" style="display:none;margin-top:10px;background:none;border:0;color:#888;font-size:13px;cursor:pointer;text-decoration:underline">다른 계정으로 로그인</button>
+  </div>
+</div>
+
 
 <header>
   <div class="wrap">
@@ -225,6 +235,7 @@ td input.memo:focus{outline:none;border-color:var(--deep);background:#fff}
 
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
 <script>
 const firebaseConfig = {
   apiKey: "AIzaSyDMMLv3t0evr-q9dD0-4bnzbeg2jlivTNQ",
@@ -409,12 +420,36 @@ function downloadCSV(){
   a.click();
 }
 
-/* 초기화: 로그인 없이 바로 연결 */
+/* 초기화: 2026-11-21 잠금 — 허락된 구글 계정만 읽고 고친다(서버 규칙도 같이 잠김) */
+const ALLOWED = ['soanqn144000@gmail.com'];
 firebase.initializeApp(firebaseConfig);
-db = firebase.database();
-db.ref('visitationRequests').on('value', function(snap){
-  requests = snap.val() || {};
-  render();
+function gateLogin(){
+  const pr = new firebase.auth.GoogleAuthProvider();
+  pr.setCustomParameters({prompt:'select_account'});
+  firebase.auth().signInWithPopup(pr).catch(function(e){
+    document.getElementById('gateMsg').textContent = '로그인 실패: ' + (e.code||e.message);
+  });
+}
+let listening = false;
+firebase.auth().onAuthStateChanged(function(u){
+  const gate = document.getElementById('gate');
+  if (u && ALLOWED.indexOf((u.email||'').toLowerCase()) >= 0) {
+    gate.style.display = 'none';
+    if (!listening) {
+      listening = true;
+      db = firebase.database();
+      db.ref('visitationRequests').on('value', function(snap){
+        requests = snap.val() || {};
+        render();
+      }, function(err){ document.getElementById('gate').style.display='flex'; document.getElementById('gateMsg').textContent='읽기 권한이 없습니다: ' + err.message; });
+    }
+  } else {
+    gate.style.display = 'flex';
+    if (u) {
+      document.getElementById('gateMsg').innerHTML = u.email + ' 은(는)<br>허락된 계정이 아닙니다.';
+      document.getElementById('gateOut').style.display = 'inline-block';
+    }
+  }
 });
 </script>
 </body>
