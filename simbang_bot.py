@@ -7,6 +7,8 @@
 """
 
 import os
+import time
+import asyncio
 import threading
 import http.server
 import socketserver
@@ -66,17 +68,36 @@ async def any_text(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
 
 
-def main():
-    if not BOT_TOKEN:
-        raise SystemExit("BOT_TOKEN 환경변수가 비어 있습니다.")
-    threading.Thread(target=_health_server, daemon=True).start()
-
-    app = Application.builder().token(BOT_TOKEN).build()
+def _build():
+    app = (Application.builder().token(BOT_TOKEN)
+           .connect_timeout(30).read_timeout(30).write_timeout(30).pool_timeout(30)
+           .get_updates_connect_timeout(30).get_updates_read_timeout(40)
+           .build())
     app.add_handler(CommandHandler("start", start))
     app.add_handler(CommandHandler("simbang", start))
     app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, any_text))
-    print("simbang bot running (webapp mode)...")
-    app.run_polling()
+    return app
+
+
+def main():
+    if not BOT_TOKEN:
+        raise SystemExit("BOT_TOKEN 환경변수가 비어 있습니다.")
+    # 포트는 한 번만 연다 — 봇이 재시도하는 동안에도 Render 는 살아 있다고 본다
+    threading.Thread(target=_health_server, daemon=True).start()
+
+    # 2026-11-24: 켜질 때 텔레그램 접속이 늦으면(TimedOut) 프로세스가 죽고,
+    # 재시작이 반복되다 Flood control 에 걸려 봇이 멈췄다 → 죽지 말고 기다렸다 다시 붙는다
+    wait = 5
+    while True:
+        try:
+            asyncio.set_event_loop(asyncio.new_event_loop())
+            print("simbang bot running (webapp mode)...", flush=True)
+            _build().run_polling(bootstrap_retries=-1, close_loop=False)
+            return
+        except Exception as e:
+            print(f"bot error: {type(e).__name__}: {e} -> {wait}s 뒤 다시", flush=True)
+            time.sleep(wait)
+            wait = min(wait * 2, 300)
 
 
 if __name__ == "__main__":
